@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}猜数字 - Flask 游乐场{% endblock %}
+
+{% block content %}
+<h1>🔢 猜数字游戏</h1>
+<p>我已经想好了一个 1~100 之间的数字，你来猜猜看！</p>
+<input type="number" id="guessInput" placeholder="输入你的猜测">
+<button id="guessBtn">猜！</button>
+<p id="message"></p>
+<p id="history"></p>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let secret = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    document.getElementById('guessBtn').onclick = function () {
+        const input = document.getElementById('guessInput');
+        const guess = parseInt(input.value);
+        if (isNaN(guess)) {
+            alert('请输入数字');
+            return;
+        }
+        attempts++;
+        let msg = '';
+        if (guess === secret) {
+            msg = `🎉 恭喜！你用了 ${attempts} 次猜中了！🎉 新游戏开始！`;
+            secret = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('history').innerHTML = '';
+        } else if (guess < secret) {
+            msg = '📈 太小了，再试试看！';
+        } else {
+            msg = '📉 太大了，再试试看！';
+        }
+        document.getElementById('message').innerHTML = msg;
+        document.getElementById('message').innerHTML = '第${attempts}次：${guess} → ${msg}<br>';
+        input.value = '';
+        input.focus();
+    };
+</script>
+{% endblock %}

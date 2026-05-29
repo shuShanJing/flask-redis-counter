@@ -1,0 +1,93 @@
+body {
+    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f7fa;
+    color: #1e2a3e;
+}
+
+nav {
+    background: #2c3e50;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #16a085;
+}
+
+.train-container {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 12px;
+    overflow-x: hidden;
+    margin: 20px 0;
+}
+
+.train {
+    font-size: 2rem;
+    white-space: nowrap;
+    animation: moveTrain 8s linear infinite;
+}
+
+@keyframes moveTrain {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.clock {
+    font-size: 2.5rem;
+    font-family: monospace;
+    background: #2c3e50;
+    color: #ecf0f1;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+button {
+    background: #16a085;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1abc9c;
+}
+
+input {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #bdc3c7;
+    margin-right: 8px;
+}
+
+section {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}

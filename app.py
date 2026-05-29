@@ -1,27 +1,23 @@
-import time
+import os
 import redis
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
-# 注意： redis 服务器就是 docker-compose 里定义的服务名
-import os
-cache = redis.from_url(os.environ.get('REDIS_URL'))
-
-def get_hit_count():
-    retries = 5
-    while True:
-        try:
-            return cache.incr('hits')
-        except redis.exceptions.ConnectionError as exc:
-            if retries == 0:
-                raise exc
-            retries -= 1
-            time.sleep(0.5)
+redis_url = os.environ.get('REDIS_URL', 'redis://redis:6379')
+cache = redis.from_url(redis_url)
 
 @app.route('/')
-def hello():
-    count = get_hit_count()
-    return f'Hello from Docker! 你是第 {count} 位访客。\n'
+def home():
+    count = cache.incr('hits')
+    return render_template('index.html', count=count)
+
+@app.route('/game')
+def game():
+    return render_template('game.html')
+
+@app.route('/fun')
+def fun():
+    return render_template('fun.html')
 
 if __name__ == "__main__":
    app.run(host="0.0.0.0", port=5000) 

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}娱乐厅 - Flask 游乐场{% endblock %}
+
+{% block content %}
+<h1>🎈 娱乐厅</h1>
+
+<section>
+    <h2>🚂 小火车来了</h2>
+    <div class="train-container">
+        <div class="train">🚂💨 呜~~~ 咔嚓咔嚓 ~~~~</div>
+    </div>
+</section>
+
+<section>
+    <h2>🕰️ 模拟时钟</h2>
+    <div class="clock" id="clock">--:--:--</div>
+</section>
+
+<section>
+    <h2>🎵 轻音乐</h2>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
+        src="//music.163.com/outchain/player?type=2&id=5270390&auto=0&height=66"></iframe>
+    <p>（网易云外链，点击播放，示例曲目《Flower Dance》）</p>
+    <p>你也可以替换成自己喜欢的歌曲ID~</p>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function updateClock() {
+        const now = new Data();
+        const timeStr = now.toLocalTimeString('zh-CN');
+        document.getElementById('clock').innerText = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    //小火车动画：通过 CSS 移动，这里无需额外 JS
+</script>
+{% endblock %}
