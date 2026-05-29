@@ -36,7 +36,7 @@
             msg = '📉 太大了，再试试看！';
         }
         document.getElementById('message').innerHTML = msg;
-        document.getElementById('message').innerHTML = '第${attempts}次：${guess} → ${msg}<br>';
+        document.getElementById('message').innerHTML = `第${attempts}次：${guess} → ${msg}<br>`;
         input.value = '';
         input.focus();
     };

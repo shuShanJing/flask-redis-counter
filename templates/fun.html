@@ -29,11 +29,13 @@
 {% block extra_js %}
 <script>
     function updateClock() {
-        const now = new Data();
-        const timeStr = now.toLocalTimeString('zh-CN');
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('zh-CN');
         document.getElementById('clock').innerText = timeStr;
     }
+    // 每秒钟更新一次时钟
     setInterval(updateClock, 1000);
+    // 立即执行一次，避免初始显示 --:--:--
     updateClock();
 
     //小火车动画：通过 CSS 移动，这里无需额外 JS
