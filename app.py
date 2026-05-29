@@ -4,7 +4,8 @@ from flask import Flask
 
 app = Flask(__name__)
 # 注意： redis 服务器就是 docker-compose 里定义的服务名
-cache = redis.Redis(host='redis', port=6379)
+import os
+cache = redis.from_url(os.environ.get('REDIS_URL))
 
 def get_hit_count():
     retries = 5
